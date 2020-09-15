@@ -4,7 +4,7 @@
 @section('content')
 
     <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg">
+    <section class="breadcrumb-section set-bg" data-setbg="{{Voyager::image(setting('site.bread_crum'))}}">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -52,9 +52,9 @@
                             <div class="blog__sidebar__recent">
                                 @if (count($recent)>0)
                                 @foreach ($recent as $recent)
-                            <a href="{{url('blog-detail/'.$recent->id)}}" class="blog__sidebar__recent__item">
+                            <a href="{{url('blog-detail/'.$recent->slug)}}" class="blog__sidebar__recent__item">
                                     <div class="blog__sidebar__recent__item__pic">
-                                    <img src="{{Voyager::image($recent->image)}}" alt="">
+                                    <img src="{{Voyager::image($recent->image)}}" style="height: 70px; width:70px" alt="">
                                     </div>
                                     <div class="blog__sidebar__recent__item__text">
                                         <h6>{{$recent->title}}</h6>
@@ -88,7 +88,7 @@
                                     </ul>
                                     <h5><a href="{{url('blog-detail/'.$post->id)}}">{{$post->title}}</a></h5>
 
-                                <a href="{{url('blog-detail/'.$post->id)}}" class="blog__btn">READ MORE <span class="arrow_right"></span></a>
+                                <a href="{{url('blog-detail/'.$post->slug)}}" class="blog__btn">READ MORE <span class="arrow_right"></span></a>
                                 </div>
                             </div>
                         </div>

@@ -25,7 +25,7 @@
 
 <body>
 
-    @include('inc.top-nav')
+    {{-- @include('inc.top-nav') --}}
     @include('inc.nav')
     @include('inc.message');
     @yield('content')
@@ -40,6 +40,7 @@
     <script src={{asset("js/jquery.slicknav.js")}}></script>
     <script src={{asset("js/mixitup.min.js")}}></script>
     <script src={{asset("js/owl.carousel.min.js")}}></script>
+    <script src={{asset("js/html2pdf.bundle.js")}}></script>
     <script src={{asset("js/main.js")}}></script>
 
 
@@ -76,6 +77,14 @@
                 });
             }
         });
+
+        function generatePDF() {
+            console.log("hello")
+        // Choose the element that our invoice is rendered in.
+        const element = document.getElementById("invoice");
+        // Choose the element and save the PDF for our user.
+        html2pdf().from(element).save();
+      }
 
     </script>
 </body>

@@ -41,17 +41,10 @@ class TrackController extends Controller
         // $email = $request->input('email');
         $status = Order::select('status')->where('order_number', $order_number)->get();
         // return $status;
-        if(count($status)>0)
-        {
 
-            return view('track')->with('detail',$detail)->with('category',$category)->with('status',$status);
+        return view('track')->with('detail',$detail)->with('category',$category)->with('status',$status);
 
-        }
-        else{
 
-            return view('track')->with('detail',$detail)->with('category',$category)->with('success',"No any order on that number");
-
-        }
     }
 
     /**

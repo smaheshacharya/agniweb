@@ -4,7 +4,7 @@
 @section('content')
 
     <!-- Blog Details Hero Begin -->
-    <section class="blog-details-hero set-bg" data-setbg="{{$posts->image}}">
+    <section class="blog-details-hero set-bg" data-setbg="{{Voyager::image($posts->image)}}">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -50,14 +50,14 @@
                             <h4>Recent News</h4>
                             <div class="blog__sidebar__recent">
                                 @if (count($recent)>0)
-                                @foreach ($recent as $recent)
-                            <a href="{{url('blog-detail/'.$recent->id)}}" class="blog__sidebar__recent__item">
+                                @foreach ($recent as $rec)
+                            <a href="{{url('blog-detail/'.$rec->id)}}" class="blog__sidebar__recent__item">
                                     <div class="blog__sidebar__recent__item__pic">
-                                    <img src="{{Voyager::image($recent->image)}}" alt="">
+                                    <img src="{{Voyager::image($rec->image)}}" style="height: 70px; width:70px"alt="">
                                     </div>
                                     <div class="blog__sidebar__recent__item__text">
-                                        <h6>{{$recent->title}}</h6>
-                                        <span>{{$recent->creatted_at}}</span>
+                                        <h6 >{{$rec->title}}</h6>
+                                        <span>{{$rec->creatted_at}}</span>
                                     </div>
                                 </a>
                                 @endforeach
@@ -65,6 +65,7 @@
                                 @else
                                 <li><a href="#">No any post found !</a></li>
                                 @endif
+
 
                             </div>
                         </div>

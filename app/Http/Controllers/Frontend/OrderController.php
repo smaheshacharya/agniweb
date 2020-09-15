@@ -9,6 +9,7 @@ use App\ProductCategory;
 use App\Order;
 use App\Billing;
 // use App\Shipping;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -97,55 +98,13 @@ class OrderController extends Controller
 
             }
             $billing->save();
+
             return redirect('thanks');
 
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 
     public function checkout()
     {
@@ -157,6 +116,8 @@ class OrderController extends Controller
     public function thanks(){
         $detail = CompanyDetail::first();
         $category = ProductCategory::orderBy('created_at','ASC')->get();
-        return view('thanks')->with('category',$category)->with('detail',$detail);
+        $last_data =  Order::latest('created_at')->first();
+        // return $last_data;
+        return view('thanks')->with('category',$category)->with('detail',$detail)->with('data',$last_data);
     }
 }

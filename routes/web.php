@@ -17,7 +17,7 @@ Route::get('/','Frontend\IndexController@index');
 
 //product
 Route::get('/shop',"Frontend\ProductController@index");
-Route::get('/shop-detail/{id}',"Frontend\ProductController@show");
+Route::get('/shop-detail/{slug}',"Frontend\ProductController@show");
 Route::get('/cart',"Frontend\ProductController@cart");
 Route::get('add-to-cart/{id}',"Frontend\ProductController@addToCart");
 
@@ -27,7 +27,7 @@ Route::delete('/remove-from-cart', 'Frontend\ProductController@remove');
 
 // Blog
 Route::get('/blog',"Frontend\BlogController@index");
-Route::get('blog-detail/{id}',"Frontend\BlogController@show");
+Route::get('blog-detail/{slug}',"Frontend\BlogController@show");
 
 //contact
 Route::get('contact',"Frontend\ContactController@index");
@@ -44,6 +44,10 @@ Route::post('sendmail/',"Frontend\MailController@sendmail")->name('sendmail');
 //Track
 Route::get('/track',"Frontend\TrackController@index");
 Route::post('/track_order',"Frontend\TrackController@track")->name('track_order');
+//customer services
+Route::get('/how',"Frontend\Customer@how");
+Route::get('/pay_process',"Frontend\Customer@pay_process");
+Route::get('/terms_condition',"Frontend\Customer@terms_condition");
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();

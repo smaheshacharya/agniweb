@@ -49,7 +49,7 @@
                                     @endphp
                                     <tr>
                                         <td class="shoping__cart__item">
-                                        <img src="{{$details['images']}}" alt="">
+                                        <img src="{{Voyager::image($details['images'])}}" alt="">
                                             <h5>{{$details['name']}}</h5>
                                         </td>
                                         <td class="shoping__cart__price">

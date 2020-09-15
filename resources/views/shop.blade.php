@@ -3,12 +3,12 @@
 @section('content')
 
     <!-- Breadcrumb Section Begin -->
-<section class="breadcrumb-section set-bg" data-setbg="{{{{Voyager::image(setting('site.bread_crum'))}}">
+<section class="breadcrumb-section set-bg" data-setbg="{{Voyager::image(setting('site.bread_crum'))}}">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <h2>Organi Shop</h2>
+                        <h2>Shop</h2>
                         <div class="breadcrumb__option">
                             <a href="./index.html">Home</a>
                             <span>Shop</span>
@@ -129,7 +129,7 @@
                                     <div class="latest-prdouct__slider__item">
                                         @if (count($let_product)>0)
                                     @foreach ($let_product as $let)
-                                    <a href="#" class="latest-product__item">
+                                    <a href="{{url('shop-detail/'.$let->slug)}}" class="latest-product__item">
                                         <div class="latest-product__item__pic">
                                         <img src="{{Voyager::image($let->images)}}" alt="{{$let->name}}">
                                         </div>
@@ -188,7 +188,7 @@
                                         </ul>
                                     </div>
                                     <div class="product__item__text">
-                                    <h6><a href="{{url('shop-detail/'.$pro->id)}}">{{$pro->name}}</a></h6>
+                                    <h6><a href="{{url('shop-detail/'.$pro->slug)}}">{{$pro->name}}</a></h6>
                                     <h5>{{$pro->sale_price}}</h5>
                                     </div>
                                 </div>

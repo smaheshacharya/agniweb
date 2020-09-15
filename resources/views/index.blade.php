@@ -68,7 +68,7 @@
                         <div class="col-lg-3">
                         <div class="categories__item set-bg" data-setbg="{{Voyager::image($cat->image)}}">
                         <h5><a href="#">{{$cat->name}}</a></h5>
-                            </div>
+                        </div>
                         </div>
                         @endforeach
                     @else
@@ -108,7 +108,7 @@
                             </ul>
                         </div>
                         <div class="featured__item__text">
-                        <h6><a href="{{url('/shop-detail'.$fet->id)}}">{{$fet->name}}</a></h6>
+                        <h6><a href="{{url('shop-detail/'.$fet->slug)}}">{{$fet->name}}</a></h6>
                         <h5>{{$fet->sale_price}}</h5>
                         </div>
                     </div>
@@ -138,7 +138,7 @@
                             <div class="latest-prdouct__slider__item">
                                 @if (count($let_product)>0)
                                     @foreach ($let_product as $let)
-                                        <a href="{{url('/shop-detail'.$let->id)}}" class="latest-product__item">
+                                        <a href="{{url('shop-detail/'.$let->slug)}}" class="latest-product__item">
                                         <div class="latest-product__item__pic">
                                         <img src="{{Voyager::image($let->images)}}" alt="{{$let->name}}">
                                         </div>
@@ -165,7 +165,7 @@
                             <div class="latest-prdouct__slider__item">
                                 @if (count($top_rated)>0)
                                 @foreach ($top_rated as $top)
-                                <a href="{{url('/shop-detail'.$top->id)}}" class="latest-product__item">
+                                <a href="{{url('shop-detail/'.$top->slug)}}" class="latest-product__item">
                                     <div class="latest-product__item__pic">
                                     <img src="{{Voyager::image($top->images)}}" alt="{{$top->name}}">
                                     </div>
@@ -192,7 +192,7 @@
                             <div class="latest-prdouct__slider__item">
                                 @if (count($reviewed)>0)
                                 @foreach ($reviewed as $rev)
-                                <a href="{{url('/shop-detail'.$rev->id)}}" class="latest-product__item">
+                                <a href="{{url('shop-detail/'.$rev->slug)}}" class="latest-product__item">
                                     <div class="latest-product__item__pic">
                                     <img src="{{Voyager::image($rev->images)}}" alt="{{$rev->name}}">
                                     </div>
@@ -241,7 +241,6 @@
                                     <li><i class="fa fa-comment-o"></i> </li>
                                 </ul>
                             <h5><a href={{url("/posts")}}>{{$item->title}}</a></h5>
-                            <p>{!!substr($item->body, 0, 100)!!}</p>
                             <p>{!!$item->body!!}
                             </div>
                         </div>

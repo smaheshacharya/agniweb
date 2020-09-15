@@ -56,13 +56,13 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
         $detail = DB::table('company_detail')->first();
         $category = ProductCategory::orderBy('created_at','ASC')->get();
         $post_category = Category::orderBy('created_at','DESC')->limit(5)->get();
         $recent = Posts::orderBy('created_at','ASC')->where('status','PUBLISHED')->limit(3)->get();
-        $posts = Posts::find($id);
+        $posts = Posts::where('slug', $slug)->first();
         return view('blog-detail')->with('detail',$detail)->with('category',$category)->with('post_category',$post_category)->with('recent',$recent)->with('posts',$posts);
 
     }

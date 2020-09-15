@@ -29,7 +29,7 @@
                             <li><a href="#">English</a></li>
                         </ul>
                     </div>
-                        <div class="header__top__right__social">
+                        <div class="header__top__right__auth">
                             <a href="{{url('/track')}}"><i class="fa fa-truck"></i> Track Order</a>
 
                         </div>
@@ -52,16 +52,16 @@
         <div class="col-lg-6">
             <nav class="header__menu">
                 <ul>
-                <li class="active"><a href="{{url('/')}}">Home</a></li>
-                    <li><a href="{{url('/shop')}}">Shop</a></li>
-                <li><a href="{{url('/blog')}}">Blog</a></li>
-                <li><a href="{{url('/contact')}}">Contact</a></li>
-                <li>
+                <li class="{{ Request::is('/') ? 'active' : '' }}"><a href="{{url('/')}}">Home</a></li>
+                <li class="{{ Request::is('shop') ? 'active' : '' }}"><a href="{{url('/shop')}}">Shop</a></li>
+                <li class="{{ Request::is('blog') ? 'active' : '' }}"><a href="{{url('/blog')}}">Blog</a></li>
+                <li class="{{ Request::is('contact') ? 'active' : '' }}"><a href="{{url('/contact')}}">Contact</a></li>
+                <li class="{{ Request::is('pay_process') or Request::is('how') or Request::is('terms_condition') ? 'active' : '' }}">
                 <a href="#">C Services</a>
                 <ul class="header__menu__dropdown">
-                    <li><a href="/">How to Order?</a></li>
-                    <li><a href="/">Payment Process</a></li>
-                    <li><a href="/">Terms and Conditions</a></li>
+                    <li><a href="/how">How to Order?</a></li>
+                    <li><a href="/pay_process">Payment Process</a></li>
+                    <li><a href="/terms_condition">Terms and Conditions</a></li>
                 </ul>
             </li>
 

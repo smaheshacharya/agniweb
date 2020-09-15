@@ -33,12 +33,12 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
         try{
             $detail = DB::table('company_detail')->first();
             $category = ProductCategory::orderBy('created_at','ASC')->get();
-            $body = Product::find($id);
+            $body = Product::where('slug', $slug)->first();
             // return $body;
             $product = Product::where('featured','true')->limit(4)->get();
         }
