@@ -4,8 +4,9 @@
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="footer__about">
+
                     <div class="footer__about__logo">
-                        <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                        <a href="./index.html"><img src="{{ Voyager::image(setting('site.logo')) }}" alt=""></a>
                     </div>
                     <ul>
                         <li>Address: {{$detail->address}}</li>
@@ -31,12 +32,7 @@
             </div>
             <div class="col-lg-4 col-md-12">
                 <div class="footer__widget">
-                    <h6>Join Our Newsletter Now</h6>
-                    <p>Get E-mail updates about our latest shop and special offers.</p>
-                    <form action="#">
-                        <input type="text" placeholder="Enter your mail">
-                        <button type="submit" class="site-btn">Subscribe</button>
-                    </form>
+                    <h6>Social Links</h6>
                     <div class="footer__widget__social">
                         <a href="{{$detail->facebook_link}}"><i class="fa fa-facebook"></i></a>
                         <a href="{{$detail->instagram_link}}"><i class="fa fa-instagram"></i></a>

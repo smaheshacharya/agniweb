@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\CompanyDetail;
 use App\ProductCategory;
 use Illuminate\Support\Facades\DB;
+use App\Mail;
 
 class ContactController extends Controller
 {
@@ -25,69 +26,21 @@ class ContactController extends Controller
     }
 
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+    public function sendmail(Request $request){
+        $detail = CompanyDetail::first();
+        $category = ProductCategory::orderBy('created_at','ASC')->get();
+        $this->validate($request,[
+            'name'=>'required',
+            'email'=>'required',
+            'message'=>'required',
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        ]);
+        $post = new Mail;
+        $post->name = $request->input('name');
+        $post->email = $request->input('email');
+        $post->message = $request->input('message');
+        $post->save();
+        return redirect()->back()->with('success', 'Send Mail Successfull');
+     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

@@ -1,7 +1,5 @@
 @extends('layout.app')
-
 @section('content')
-
     <!-- Hero Section Begin -->
     <section class="hero">
         <div class="container">
@@ -10,7 +8,7 @@
                     <div class="hero__categories">
                         <div class="hero__categories__all">
                             <i class="fa fa-bars"></i>
-                            <span>All departments</span>
+                            <span>All Categories</span>
                         </div>
                         <ul>
                             @if (count($category)>0)
@@ -26,12 +24,12 @@
                 <div class="col-lg-9">
                     <div class="hero__search">
                         <div class="hero__search__form">
-                            <form action="#">
+                        <form action="{{route('search')}}" method="get">
                                 <div class="hero__search__categories">
-                                    All Categories
+                                    All Prducts
                                     <span class="arrow_carrot-down"></span>
                                 </div>
-                                <input type="text" placeholder="What do yo u need?">
+                                <input type="text" placeholder="What do yo u need?" name="search">
                                 <button type="submit" class="site-btn">SEARCH</button>
                             </form>
                         </div>
@@ -49,7 +47,7 @@
                         <div class="hero__text">
                             <h2>{{$banner[0]->highlights_txt}}</h2>
                             <p>{{$banner[0]->description}}</p>
-                            <a href="#" class="primary-btn">SHOP NOW</a>
+                        <a href="{{url('/shop')}}" class="primary-btn">MORE</a>
                         </div>
                     </div>
                 </div>
@@ -67,7 +65,7 @@
                         @foreach ($category as $cat)
                         <div class="col-lg-3">
                         <div class="categories__item set-bg" data-setbg="{{Voyager::image($cat->image)}}">
-                        <h5><a href="#">{{$cat->name}}</a></h5>
+                        <h5><a href="{{url('category/'.$cat->slug)}}">{{$cat->name}}</a></h5>
                         </div>
                         </div>
                         @endforeach
@@ -103,13 +101,12 @@
                     <div class="featured__item">
                         <div class="featured__item__pic set-bg" data-setbg="{{Voyager::image($fet->images)}}">
                             <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                <li><a href="{{ url('add-to-cart/'.$fet->id) }}"><i class="fa fa-shopping-cart"></i></a></li>
                             </ul>
                         </div>
                         <div class="featured__item__text">
                         <h6><a href="{{url('shop-detail/'.$fet->slug)}}">{{$fet->name}}</a></h6>
-                        <h5>{{$fet->sale_price}}</h5>
+                        <h5> Rs. {{$fet->sale_price}}</h5>
                         </div>
                     </div>
                 </div>
@@ -144,7 +141,7 @@
                                         </div>
                                         <div class="latest-product__item__text">
                                         <h6>{{$let->name}}</h6>
-                                        <span>{{$let->sale_price}}</span>
+                                        <span>Rs. {{$let->sale_price}}</span>
                                         </div>
                                     </a>
                                     @endforeach
@@ -171,7 +168,7 @@
                                     </div>
                                     <div class="latest-product__item__text">
                                     <h6>{{$top->name}}</h6>
-                                    <span>{{$top->sale_price}}</span>
+                                    <span>Rs. {{$top->sale_price}}</span>
                                     </div>
                                 </a>
                                 @endforeach
@@ -198,7 +195,7 @@
                                     </div>
                                     <div class="latest-product__item__text">
                                     <h6>{{$rev->name}}</h6>
-                                    <span>{{$rev->sale_price}}</span>
+                                    <span>Rs. {{$rev->sale_price}}</span>
                                     </div>
                                 </a>
                                 @endforeach
@@ -240,7 +237,7 @@
                                 <li><i class="fa fa-calendar-o"></i> {{$item->created_at}}</li>
                                     <li><i class="fa fa-comment-o"></i> </li>
                                 </ul>
-                            <h5><a href={{url("/posts")}}>{{$item->title}}</a></h5>
+                            <h5><a href={{url("blog-detail/".$item->slug)}}>{{$item->title}}</a></h5>
                             <p>{!!$item->body!!}
                             </div>
                         </div>
@@ -260,5 +257,5 @@
     </section>
     <!-- Blog Section End -->
 
-@endsection('content');
+@endsection('content')
 

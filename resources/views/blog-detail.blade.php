@@ -94,6 +94,12 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+
+                            <div class="col-lg-10">
+                            <div class="fb-comments" data-href="http://127.0.0.1:8000/blog-detail/{{$posts->slug}}" data-numposts="5" data-width=""></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -102,4 +108,4 @@
 
     <!-- Related Blog Section End -->
 
-    @endsection('content')
+    @endsection

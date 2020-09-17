@@ -1,6 +1,4 @@
-
 @extends('layout.app')
-
 @section('content')
 
     <!-- Breadcrumb Section Begin -->
@@ -95,12 +93,13 @@
                         @endforeach
 
                         @else
-                        <li><a href="#">No any posts found !</a></li>
+                    <li><h5>Post not Found Goto Home Page !</h5><a href="{{url('/')}}">Home</a></li>
                         @endif
 
                     </div>
+                    {{ $posts->links() }}
                 </div>
             </div>
         </div>
     </section>
-    @endsection('content')
+    @endsection

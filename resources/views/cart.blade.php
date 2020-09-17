@@ -10,7 +10,7 @@
                     <div class="breadcrumb__text">
                         <h2>Shopping Cart</h2>
                         <div class="breadcrumb__option">
-                            <a href="./index.html">Home</a>
+                        <a href="{{url('/')}}">Home</a>
                             <span>Shopping Cart</span>
                         </div>
                     </div>
@@ -53,7 +53,7 @@
                                             <h5>{{$details['name']}}</h5>
                                         </td>
                                         <td class="shoping__cart__price">
-                                            {{$details['sale_price']}}
+                                            Rs. {{$details['sale_price']}}
                                         </td>
                                         <td class="shoping__cart__quantity">
                                             <div class="quantity">
@@ -63,7 +63,7 @@
                                             </div>
                                         </td>
                                         <td class="shoping__cart__total">
-                                            {{$details['sale_price'] * $details['quantity']}}
+                                            Rs. {{$details['sale_price'] * $details['quantity']}}
                                         </td>
                                         <td class="shoping__cart__item__close">
                                             <span class="icon_refresh update-cart" data-id="{{ $id }}"></span>
@@ -97,8 +97,8 @@
                     <div class="shoping__checkout">
                         <h5>Cart Total</h5>
                         <ul>
-                            <li>Subtotal <span>{{ $total }}</span></li>
-                            <li>Total <span>{{ $total }}</span></li>
+                            <li>Subtotal <span>Rs. {{ $total }}</span></li>
+                            <li>Total <span>Rs. {{ $total }}</span></li>
                         </ul>
                     <a href="{{url('checkout')}}" class="primary-btn">PROCEED TO CHECKOUT</a>
                     </div>
@@ -108,4 +108,4 @@
     </section>
 
     <!-- Shoping Cart Section End -->
-    @endsection('content')
+    @endsection

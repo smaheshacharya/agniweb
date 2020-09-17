@@ -27,4 +27,4 @@
             {!!setting('site.how_to_order')!!}
         </div>
     </section>
-    @endsection('content')
+    @endsection

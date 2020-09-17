@@ -1624,7 +1624,15 @@ ol {
 .blog__pagination {
 	padding-top: 10px;
 }
-
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > li > span:focus,
+.pagination > li > span:hover {
+    z-index: 3;
+    color: #23527c;
+    background-color: purple;
+    border-color: #ddd;
+}
 .product__pagination a,
 .blog__pagination a {
 	display: inline-block;

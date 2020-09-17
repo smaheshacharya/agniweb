@@ -46,7 +46,7 @@
     <div class="row">
         <div class="col-lg-3">
             <div class="header__logo">
-                <a href="./index.html"><img src={{ Voyager::image(setting('site.logo')) }} alt=""></a>
+            <a href="{{url('/')}}"><img src={{ Voyager::image(setting('site.logo')) }} alt=""></a>
             </div>
         </div>
         <div class="col-lg-6">
@@ -72,7 +72,6 @@
         <div class="col-lg-3">
             <div class="header__cart">
                 <ul>
-                    <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
                 <li><a href="{{url('/cart')}}"><i class="fa fa-shopping-bag"></i> <span>{{ count((array) session('cart')) }}</span></a></li>
                 </ul>
             </div>

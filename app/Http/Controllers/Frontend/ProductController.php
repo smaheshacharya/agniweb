@@ -20,7 +20,7 @@ class ProductController extends Controller
     public function index()
     {
         $detail = DB::table('company_detail')->first();
-        $product = Product::orderBy('created_at','DESC')->paginate(16);
+        $product = Product::orderBy('created_at','DESC')->paginate(15);
         $let_product = Product::where('featured','true')->limit(3)->get();
         $category = ProductCategory::orderBy('created_at','ASC')->get();
         return view('shop')->with('detail',$detail)->with('product',$product)->with('category',$category)->with('let_product',$let_product);
@@ -43,7 +43,7 @@ class ProductController extends Controller
             $product = Product::where('featured','true')->limit(4)->get();
         }
         catch(ModelNotFoundException $e){
-            return back()->withError($e->getMessage())->withInput();
+            return redirect()->back()->with('success', 'Product not found');
 
         }
         return view('shop-details')->with('product',$product)->with('product_detail',$body)->with('detail',$detail)->with('category',$category);
@@ -142,6 +142,16 @@ class ProductController extends Controller
 
             session()->flash('success', 'Product removed successfully');
         }
+    }
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        $detail = DB::table('company_detail')->first();
+        $product = DB::table('products')->where('name', 'like', '%' . $search . '%')->paginate(15);
+        $let_product = Product::where('featured','true')->limit(3)->get();
+        $category = ProductCategory::orderBy('created_at','ASC')->get();
+        return view('search')->with('detail',$detail)->with('product',$product)->with('category',$category)->with('let_product',$let_product);
+
     }
 
 }

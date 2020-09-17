@@ -97,14 +97,14 @@
                                     @php
                                         $total += $details['sale_price'] * $details['quantity']
                                     @endphp
-                                        <li>{{$details['name']}} <span>{{$details['sale_price']}}</span></li>
+                                        <li>{{$details['name']}} <span>Rs. {{$details['sale_price']}}</span></li>
                                         @endforeach
 
                                     @endif
 
                                 </ul>
-                                <div class="checkout__order__subtotal">Subtotal <span>{{ $total }}</span></div>
-                                <div class="checkout__order__total">Total <span>{{ $total }}</span></div>
+                                <div class="checkout__order__subtotal">Subtotal <span>Rs.{{ $total }}</span></div>
+                                <div class="checkout__order__total">Total <span>Rs. {{ $total }}</span></div>
                                 <div class="checkout__input__checkbox">
                                     <label for="acc-or">
                                         Create an account?
@@ -130,4 +130,4 @@
         </div>
     </section>
     <!-- Checkout Section End -->
-    @endsection('content')
+    @endsection

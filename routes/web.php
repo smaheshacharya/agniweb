@@ -24,23 +24,26 @@ Route::get('add-to-cart/{id}',"Frontend\ProductController@addToCart");
 Route::patch('/update-cart', 'Frontend\ProductController@update');
 
 Route::delete('/remove-from-cart', 'Frontend\ProductController@remove');
-
+//category
+Route::get('/category/{slug}',"Frontend\CategoryController@show");
 // Blog
 Route::get('/blog',"Frontend\BlogController@index");
 Route::get('blog-detail/{slug}',"Frontend\BlogController@show");
 
 //contact
 Route::get('contact',"Frontend\ContactController@index");
+Route::post('sendmail/',"Frontend\ContactController@sendmail")->name('sendmail');
 
-// checjout
+// checkout
 Route::get('checkout/',"Frontend\OrderController@checkout");
 //order place
 Route::post('order/',"Frontend\OrderController@store")->name('order');
 //thanks
 Route::get('thanks',"Frontend\OrderController@thanks");
 
-//sendmail
-Route::post('sendmail/',"Frontend\MailController@sendmail")->name('sendmail');
+//Search
+Route::get('product',"Frontend\ProductController@search")->name('search');
+
 //Track
 Route::get('/track',"Frontend\TrackController@index");
 Route::post('/track_order',"Frontend\TrackController@track")->name('track_order');

@@ -1,5 +1,4 @@
 @extends('layout.app')
-
 @section('content')
     <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-section set-bg" data-setbg="{{Voyager::image(setting('site.bread_crum'))}}">
@@ -95,5 +94,5 @@
             </form>
         </div>
     </div>
-    <!-- Contact Form End -->
-    @endsection('content');
+
+    @endsection

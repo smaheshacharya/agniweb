@@ -55,8 +55,8 @@
                                     @endif
 
                                 </ul>
-                                <div class="checkout__order__subtotal">Subtotal <span>{{ $total }}</span></div>
-                                <div class="checkout__order__total">Total <span>{{ $total }}</span></div>
+                                <div class="checkout__order__subtotal">Subtotal <span>Rs. {{ $total }}</span></div>
+                                <div class="checkout__order__total">Total <span>Rs. {{ $total }}</span></div>
 
 
                                 <button type="submit" class="site-btn" onclick="generatePDF()" >Download as pdf</button>

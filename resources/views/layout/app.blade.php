@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html lang="zxx">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Ogani Template">
+    <meta name="description" content="{{setting('site.description')}}">
     <meta name="keywords" content="Ogani, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Ogani | Template</title>
+    <title>{{setting('site.title')}}</title>
 
     <!-- Google Font -->
-<link href={{ asset("https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap") }} rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
     <!-- Css Styles -->
     <link rel="stylesheet" href={{asset("css/bootstrap.min.css") }}  type="text/css">
     <link rel="stylesheet" href={{asset("css/font-awesome.min.css")}} type="text/css">
@@ -25,9 +23,9 @@
 
 <body>
 
-    {{-- @include('inc.top-nav') --}}
+    @include('inc.top-nav')
     @include('inc.nav')
-    @include('inc.message');
+    @include('inc.message')
     @yield('content')
     @include('inc.footer')
 
@@ -44,7 +42,7 @@
     <script src={{asset("js/main.js")}}></script>
 
 
-    <script type="text/javascript">
+    <script>
 
         $(".update-cart").click(function (e) {
            e.preventDefault();
@@ -84,9 +82,21 @@
         const element = document.getElementById("invoice");
         // Choose the element and save the PDF for our user.
         html2pdf().from(element).save();
-      }
-
     </script>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v8.0&appId=1080434395665706&autoLogAppEvents=1" nonce="DSDOYNk2"></script>
+    $(function() {
+  var regExp = /[a-z]/i;
+  $('#test').on('keydown keyup', function(e) {
+    var value = String.fromCharCode(e.which) || e.key;
+
+    // No letters
+    if (regExp.test(value)) {
+      e.preventDefault();
+      return false;
+    }
+  });
+});
 </body>
 
 </html>

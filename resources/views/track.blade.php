@@ -55,7 +55,7 @@
                     </div>
                 </form>
                 @if ($status ?? '')
-                <h6>Your Oder is in <span style="color: red">{{ $status ?? '' ?? ''}}</span> state</h6>
+                <h6>Your Oder is in <span style="color: red">{{ $status[0]->status}}</span> state</h6>
                 @endif
 
             </div>

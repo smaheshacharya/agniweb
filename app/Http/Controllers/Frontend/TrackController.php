@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\CompanyDetail;
 use App\ProductCategory;
 use App\Order;
-
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 class TrackController extends Controller
 {
     /**
@@ -39,67 +39,22 @@ class TrackController extends Controller
         ]);
         $order_number = $request->input('order_number');
         // $email = $request->input('email');
-        $status = Order::select('status')->where('order_number', $order_number)->get();
+
+        $status = Order::where('order_number', $order_number)->get();
         // return $status;
+        if(count($status)>0)
+        {
+            return view('track')->with('detail',$detail)->with('category',$category)->with('status',$status);
 
-        return view('track')->with('detail',$detail)->with('category',$category)->with('status',$status);
+        }
+        else{
+
+            return redirect()->back()->with('success', 'Order number not found');
+        }
+
 
 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

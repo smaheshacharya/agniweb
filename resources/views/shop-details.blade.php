@@ -108,8 +108,8 @@
                             </ul>
                         </div>
                         <div class="product__item__text">
-                        <h6><a href="#">{{$pro->name}}</a></h6>
-                        <h5>{{$pro->sale_price}}</h5>
+                        <h6><a href="{{url('shop-detail/'.$pro->slug)}}">{{$pro->name}}</a></h6>
+                        <h5>Rs. {{$pro->sale_price}}</h5>
                         </div>
                     </div>
                 </div>
