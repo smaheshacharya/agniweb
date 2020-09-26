@@ -17,13 +17,13 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show($slug,$id)
     {
+        $detail = DB::table('company_detail')->first();
+        $category = ProductCategory::orderBy('created_at','ASC')->get();
+        $productcategory = Product::where('category_id', $id)->paginate(15);
+        return view('category')->with('detail',$detail)->with('category',$category)->with('product',$productcategory);
 
-        $productcategory = Product::where('category_id',$id )->get();
-        return $productcategory;
-        $product = Product::where('category_id',$productcategory)->get();
-        return $product;
 
 
     }

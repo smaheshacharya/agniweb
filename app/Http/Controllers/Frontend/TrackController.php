@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\CompanyDetail;
 use App\ProductCategory;
 use App\Order;
+use App\Billing;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 class TrackController extends Controller
 {
@@ -38,11 +39,13 @@ class TrackController extends Controller
 
         ]);
         $order_number = $request->input('order_number');
+        $email = $request->input('email');
         // $email = $request->input('email');
 
         $status = Order::where('order_number', $order_number)->get();
+        $email = Billing::where('email', $email)->get();
         // return $status;
-        if(count($status)>0)
+        if(count($status)>0 && count($email) >0)
         {
             return view('track')->with('detail',$detail)->with('category',$category)->with('status',$status);
 

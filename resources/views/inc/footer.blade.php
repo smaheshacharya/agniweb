@@ -32,13 +32,11 @@
             </div>
             <div class="col-lg-4 col-md-12">
                 <div class="footer__widget">
-                    <h6>Social Links</h6>
+                    <h6>Follow on Facebook</h6>
                     <div class="footer__widget__social">
-                        <a href="{{$detail->facebook_link}}"><i class="fa fa-facebook"></i></a>
-                        <a href="{{$detail->instagram_link}}"><i class="fa fa-instagram"></i></a>
-                        <a href="{{$detail->twitter_link}}"><i class="fa fa-twitter"></i></a>
-                        <a href="{{$detail->pinintrest_link}}"><i class="fa fa-pinterest"></i></a>
+                        <div class="fb-page" data-href="https://www.facebook.com/agnihospitalitysupplies" data-tabs="timeline" data-width="" data-height="300px" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/agnihospitalitysupplies" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/agnihospitalitysupplies">Agni Hospitality Supplies Pvt. Ltd.</a></blockquote></div>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -48,7 +46,7 @@
                     <div class="footer__copyright__text"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Agni Hospitality
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
-                    <div class="footer__copyright__payment"><img src="img/payment-item.png" alt=""></div>
+                    <div class="footer__copyright__payment"><img src="{{Voyager::image(setting('site.payment'))}}" alt=""></div>
                 </div>
             </div>
         </div>

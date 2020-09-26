@@ -72,7 +72,7 @@
         <div class="col-lg-3">
             <div class="header__cart">
                 <ul>
-                <li><a href="{{url('/cart')}}"><i class="fa fa-shopping-bag"></i> <span>{{ count((array) session('cart')) }}</span></a></li>
+                <li><a href="{{url('/cart')}}"><i class="fa fa-shopping-bag cart_count"></i> <span>{{ count((array) session('cart')) }}</span></a></li>
                 </ul>
             </div>
         </div>

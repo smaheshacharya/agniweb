@@ -1,6 +1,8 @@
 
 @extends('layout.app')
-
+@section('title', $posts->title)
+@section('meta_description', $posts->body)
+@section('image', Voyager::image($posts->image))
 @section('content')
 
     <!-- Blog Details Hero Begin -->

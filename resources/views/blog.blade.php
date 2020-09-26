@@ -85,7 +85,7 @@
                                         <li><i class="fa fa-comment-o"></i> 0</li>
                                     </ul>
                                     <h5><a href="{{url('blog-detail/'.$post->id)}}">{{$post->title}}</a></h5>
-
+                                    <p>   {{substr($post->body, 0, 83)}} </p>
                                 <a href="{{url('blog-detail/'.$post->slug)}}" class="blog__btn">READ MORE <span class="arrow_right"></span></a>
                                 </div>
                             </div>

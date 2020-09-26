@@ -28,12 +28,14 @@ class IndexController extends Controller
         // return $banner;
         $fet_product = Product::where('featured','true')->limit(8)->get();
         // return $fet_product;
-        $let_product = Product::orderBy('created_at','DESC')->limit(3)->get();
+        $let_product = Product::orderBy('created_at','DESC')->get();
+        // return array_chunk($let_product,3);
         // return $let_product;
-        $reviewed = Product::where('reviews_allowed','true')->limit(3)->get();
-        $top_rated = Product::orderBy('created_at','ASC')->limit(3)->get();
+        $reviewed = Product::where('reviews_allowed','true')->get();
+        $top_rated = Product::orderBy('created_at','ASC')->get();
         $posts = Posts::orderBy('created_at','DESC')->where('status','PUBLISHED')->limit(3)->get();
         // return $posts;
+
         return view('index')->with('detail',$detail)->with('category',$category)->with('banner',$banner)->with('fet_product',$fet_product)->with('let_product',$let_product)->with('top_rated',$top_rated)->with('reviewed',$reviewed)->with('posts',$posts);
     }
 

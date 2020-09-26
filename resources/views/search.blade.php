@@ -187,7 +187,8 @@
 
 
                         @else
-                        <li><h5>Product not Found Goto Home Page !</h5><a href="{{url('/')}}">Home</a></li>
+                        <h6>Searching Product not Found Goto Home ! </h6>
+
                         @endif
                     </div>
                     {{ $product->links() }}

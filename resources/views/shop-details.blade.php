@@ -1,4 +1,8 @@
 @extends('layout.app')
+@section('title', $product_detail->name)
+@section('meta_description', $product_detail->descriptions)
+@section('image', Voyager::image($product_detail->image))
+
 
 @section('content')
     <!-- Breadcrumb Section Begin -->
@@ -42,14 +46,10 @@
                             <i class="fa fa-star-half-o"></i>
                             <span>(18 reviews)</span>
                         </div>
-                        <div class="product__details__price">{{$product_detail->sale_price}}</div>
+                        <div class="product__details__price">Rs. {{$product_detail->sale_price}}</div>
                         <p>{!!$product_detail->description!!}</p>
                         <div class="product__details__quantity">
-                            <div class="quantity">
-                                <div class="pro-qty">
-                                    <input type="text" value="1">
-                                </div>
-                            </div>
+
                         </div>
                     <a href="{{url('add-to-cart/'.$product_detail->id)}}" class="primary-btn">ADD TO CARD</a>
                         <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
@@ -74,6 +74,12 @@
                                     aria-selected="false">Reviews <span>(1)</span></a>
                             </li>
                         </ul>
+                        <div class="checkout__input">
+                            <div class="col-md-4">
+                            <input type="text" name="ship_fullname" id="ship_fullname" placeholder="Your Review">
+
+                        </div>
+                        </div>
 
                     </div>
                 </div>
@@ -103,7 +109,6 @@
                     <div class="product__item">
                     <div class="product__item__pic set-bg" data-setbg="{{Voyager::image($pro->images)}}">
                             <ul class="product__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
                             <li><a href="{{url('/add-to-cart')}}"><i class="fa fa-shopping-cart"></i></a></li>
                             </ul>
                         </div>

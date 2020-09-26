@@ -100,7 +100,7 @@
                             <li>Subtotal <span>Rs. {{ $total }}</span></li>
                             <li>Total <span>Rs. {{ $total }}</span></li>
                         </ul>
-                    <a href="{{url('checkout')}}" class="primary-btn">PROCEED TO CHECKOUT</a>
+                    <a href="{{route('checkout')}}" class="primary-btn">PROCEED TO CHECKOUT</a>
                     </div>
                 </div>
             </div>

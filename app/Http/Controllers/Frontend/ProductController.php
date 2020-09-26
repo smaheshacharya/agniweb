@@ -21,7 +21,7 @@ class ProductController extends Controller
     {
         $detail = DB::table('company_detail')->first();
         $product = Product::orderBy('created_at','DESC')->paginate(15);
-        $let_product = Product::where('featured','true')->limit(3)->get();
+        $let_product = Product::where('featured','true')->limit(6)->get();
         $category = ProductCategory::orderBy('created_at','ASC')->get();
         return view('shop')->with('detail',$detail)->with('product',$product)->with('category',$category)->with('let_product',$let_product);
     }

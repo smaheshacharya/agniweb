@@ -126,25 +126,28 @@
                                 <h4>Latest Products</h4>
                                 <div class="latest-product__slider owl-carousel">
 
-                                    <div class="latest-prdouct__slider__item">
-                                        @if (count($let_product)>0)
-                                    @foreach ($let_product as $let)
-                                    <a href="{{url('shop-detail/'.$let->slug)}}" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                        <img src="{{Voyager::image($let->images)}}" alt="{{$let->name}}">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                        <h6>{{$let->name}}</h6>
-                                        <span>{{$let->sale_price}}</span>
-                                        </div>
-                                    </a>
+                                    @if (count($let_product)>0)
+                                    @foreach($let_product->chunk(3) as $chunk)
+                                            <div class="latest-prdouct__slider__item">
+                                                @foreach ($chunk as $let)
+                                                <a href="{{url('shop-detail/'.$let->slug)}}" class="latest-product__item">
+                                                    <div class="latest-product__item__pic">
+                                                    <img src="{{Voyager::image($let->images)}}" alt="{{$let->name}}">
+                                                    </div>
+                                                    <div class="latest-product__item__text">
+                                                    <h6>{{$let->name}}</h6>
+                                                    <span>Rs. {{$let->sale_price}}</span>
+                                                    </div>
+                                                </a>
+                                                @endforeach
+
+
+                                            </div>
                                     @endforeach
+                            @else
 
-                                @else
-
-                                    <h3>No any Product</h3>
-                                @endif
-                                    </div>
+                            <h3>No any Product</h3>
+                        @endif
                                 </div>
                             </div>
                         </div>

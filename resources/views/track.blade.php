@@ -22,7 +22,6 @@
     <!-- Checkout Section Begin -->
     <section class="checkout spad">
         <div class="container">
-
             <div class="checkout__form">
                 <h6>Enter your order number and email of billing address...</h6>
             <form action="{{route('track_order')}}" method="POST">
@@ -39,7 +38,7 @@
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Email<span>*</span></p>
-                                        <input type="text" placeholder="Billing Email(optional)" class="checkout__input__add" name="email">
+                                        <input type="text" placeholder="Billing Email" class="checkout__input__add" name="email">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -55,8 +54,53 @@
                     </div>
                 </form>
                 @if ($status ?? '')
-                <h6>Your Oder is in <span style="color: red">{{ $status[0]->status}}</span> state</h6>
+                <div class="row">
+                <div class="md-stepper-horizontal orange">
+                <div class="md-step {{$status[0]->status == "pending" ? 'active' : ''}}">
+                      <div class="md-step-circle"><span>1</span></div>
+                      <div class="md-step-title">Pending</div>
+                      <div class="md-step-bar-left"></div>
+                      <div class="md-step-bar-right"></div>
+                    </div>
+                    <div class="md-step {{$status[0]->status == "processing" ? 'active' : ''}} ">
+                      <div class="md-step-circle"><span>2</span></div>
+                      <div class="md-step-title">Processing</div>
+                      <div class="md-step-bar-left"></div>
+                      <div class="md-step-bar-right"></div>
+                    </div>
+                    <div class="md-step {{$status[0]->status == "on-hold" ? 'active' : ''}}">
+                      <div class="md-step-circle"><span>3</span></div>
+                      <div class="md-step-title">on-hold</div>
+                      <div class="md-step-bar-left"></div>
+                      <div class="md-step-bar-right"></div>
+                    </div>
+                    <div class="md-step {{$status[0]->status == "completed" ? 'active' : ''}}">
+                        <div class="md-step-circle"><span>3</span></div>
+                        <div class="md-step-title">Completed</div>
+                        <div class="md-step-bar-left"></div>
+                        <div class="md-step-bar-right"></div>
+                      </div>
+                      <div class="md-step {{$status[0]->status == "canceled" ? 'active' : ''}}">
+                        <div class="md-step-circle"><span>3</span></div>
+                        <div class="md-step-title">Canceled</div>
+                        <div class="md-step-bar-left"></div>
+                        <div class="md-step-bar-right"></div>
+                      </div>
+                      <div class="md-step {{$status[0]->status == "refunded" ? 'active' : ''}}">
+                        <div class="md-step-circle"><span>3</span></div>
+                        <div class="md-step-title">Refunded</div>
+                        <div class="md-step-bar-left"></div>
+                        <div class="md-step-bar-right"></div>
+                      </div>
+
+                    </div>
+                </div>
                 @endif
+
+
+
+
+
 
             </div>
         </div>

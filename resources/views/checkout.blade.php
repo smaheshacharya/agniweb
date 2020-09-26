@@ -1,6 +1,8 @@
+
 @extends('layout.app')
 
 @section('content')
+
     <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-section set-bg" data-setbg="{{Voyager::image(setting('site.bread_crum'))}}">
         <div class="container">
@@ -9,7 +11,7 @@
                     <div class="breadcrumb__text">
                         <h2>Checkout</h2>
                         <div class="breadcrumb__option">
-                            <a href="./index.html">Home</a>
+                        <a href="{{url('/')}}">Home</a>
                             <span>Checkout</span>
                         </div>
                     </div>
@@ -18,13 +20,20 @@
         </div>
     </section>
     <!-- Breadcrumb Section End -->
+    @if (!Session::has('cart') || empty(Session :: get ('cart')))
+    <section class="checkout spad">
+        <div class="container">
 
-    <!-- Checkout Section Begin -->
+        <h6>Your Cart is empty first add item in cart ! <a style="color: red" href="{{url('/shop')}}">Continuing Shoping</a></h6>
+        </div>
+    </section>
+    @else
+        <!-- Checkout Section Begin -->
     <section class="checkout spad">
         <div class="container">
 
             <div class="checkout__form">
-                <h4>Billing Details</h4>
+                <h4>Shipping Details</h4>
             <form action="{{route('order')}}" method="POST">
                 @csrf
                     <div class="row">
@@ -33,50 +42,97 @@
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Full Name<span>*</span></p>
-                                        <input type="text" name="fullname">
+                                        <input type="text" name="fullname" id="fullname">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Address<span>*</span></p>
-                                        <input type="text" placeholder="Street Address" class="checkout__input__add" name="address">
+                                        <input type="text" placeholder="Street Address" class="checkout__input__add" name="address" id="address">
                                     </div>
                                 </div>
                             </div>
                             <div class="checkout__input">
                                 <p>City<span>*</span></p>
-                                <input type="text" name="city">
+                                <input type="text" name="city" id="city">
                             </div>
                             <div class="checkout__input">
                                 <p>State<span>*</span></p>
-                                <input type="text" class="checkout__input__add" name="state">
+                                <input type="text" class="checkout__input__add" name="state" id="state">
                             </div>
                             <div class="checkout__input">
                                 <p>Post Code<span>*</span></p>
-                                <input type="text" name="post_code">
+                                <input type="text" name="post_code" id="post_code" onkeypress="return (event.charCode > 47 &&
+                                event.charCode < 58)">
                             </div>
 
-                            <div class="row">
-                                <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Country<span>*</span></p>
-                                        <input type="text" name="country">
+                                        <input type="text" class="checkout__input__add" name="country" id="country">
+                                        <div id="countryList"></div>
                                     </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="checkout__input">
+
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                        <div class="checkout__input">
                                         <p>Phone<span>*</span></p>
-                                        <input type="text" name="phone">
+                                        <input type="text" name="phone" id="phone" onkeypress="return (event.charCode > 47 &&
+                                        event.charCode < 58)">
+                                     </div>
                                     </div>
-                                </div>
-                            </div>
+                                    </div>
                             <div class="checkout__input__checkbox">
                                 <label for="diff-acc">
-                                    Ship to a different address?
-                                    <input type="checkbox" id="diff-acc">
+                                    Shipping is same as billing ?
+                                    <input type="checkbox" id="diff-acc" onclick="SetBilling(this.checked);">
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
+
+                            <h4>Shipping Address</h4>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Full Name<span>*</span></p>
+                                        <input type="text" name="ship_fullname" id="ship_fullname">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Address<span>*</span></p>
+                                        <input type="text" placeholder="Street Address" class="checkout__input__add" name="ship_address" id="ship_address">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="checkout__input">
+                                <p>City<span>*</span></p>
+                                <input type="text" name="ship_city" id="ship_city">
+                            </div>
+                            <div class="checkout__input">
+                                <p>State<span>*</span></p>
+                                <input type="text" class="checkout__input__add" name="ship_state" id="ship_state">
+                            </div>
+                            <div class="checkout__input">
+                                <p>Post Code<span>*</span></p>
+                                <input type="text" name="ship_post_code" id="ship_post_code" onkeypress="return (event.charCode > 47 &&
+                                event.charCode < 58)">
+                            </div>
+
+                                    <div class="checkout__input">
+                                        <p>Country<span>*</span></p>
+                                        <input type="text" class="checkout__input__add" name="ship_country" id="ship_country">
+                                        <div id="countryList"></div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                        <div class="checkout__input">
+                                        <p>Phone<span>*</span></p>
+                                        <input type="text" name="ship_phone" id="ship_phone" onkeypress="return (event.charCode > 47 &&
+                                        event.charCode < 58)">
+                                     </div>
+                                    </div>
+                                    </div>
                             <div class="checkout__input">
                                 <p>Order notes<span>*</span></p>
                                 <input type="text" placeholder="Notes about your order, e.g. special notes for delivery." name="oder_note">
@@ -114,20 +170,31 @@
                                 </div>
                                 <p>Create Account to make our valuable cutomer and claim more discount !</p>
                                 <div class="checkout__input__checkbox">
-                                    <input type="radio" id="payment" name="payment" value="cash_on_delivery">
+                                    <input type="radio" id="payment" name="payment" value="cash_on_delivery" >
                                     <label for="cash">Cash on Delivery</label><br>
-                                    <input type="radio" id="payment" name="payment" value="esewa">
+                                    <input type="radio" name="payment" value="esewa">
                                     <label for="female">Esewa</label><br>
                                     </label>
+                                    <div class="tran" id="esewa">
+                                        <small>*Send money in 986100 and type transaction id here !</small>
+                                        <input type="text" class="checkout__input__add" name="esewa_tran" placeholder="Esewa Transaction id" >
+
+                                    </div>
+                                    <div class="tran" id="cash_on_delivery">
+                                        <small>*We collect money on delivery.</small>
+                                    </div>
                                 </div>
 
                                 <button type="submit" class="site-btn">PLACE ORDER</button>
                             </div>
                         </div>
                     </div>
+                    </div>
                 </form>
             </div>
         </div>
     </section>
+
+    @endif
     <!-- Checkout Section End -->
     @endsection

@@ -13,7 +13,7 @@
                         <ul>
                             @if (count($category)>0)
                                 @foreach ($category as $cat)
-                                    <li><a href="#">{{$cat->name}}</a></li>
+                        <li><a href="">{{$cat->name}}</a></li>
                                 @endforeach
                                 @else
                                 <li><a href="#">Category Not Found</a></li>
@@ -65,7 +65,7 @@
                         @foreach ($category as $cat)
                         <div class="col-lg-3">
                         <div class="categories__item set-bg" data-setbg="{{Voyager::image($cat->image)}}">
-                        <h5><a href="{{url('category/'.$cat->slug)}}">{{$cat->name}}</a></h5>
+                        <h5><a href="{{url('category/'.$cat->slug.'/'.$cat->id)}}">{{$cat->name}}</a></h5>
                         </div>
                         </div>
                         @endforeach
@@ -132,26 +132,28 @@
                     <div class="latest-product__text">
                         <h4>Latest Products</h4>
                         <div class="latest-product__slider owl-carousel">
-                            <div class="latest-prdouct__slider__item">
-                                @if (count($let_product)>0)
-                                    @foreach ($let_product as $let)
+                            @if (count($let_product)>0)
+                            @foreach($let_product->chunk(3) as $chunk)
+                                    <div class="latest-prdouct__slider__item">
+                                        @foreach ($chunk as $let)
                                         <a href="{{url('shop-detail/'.$let->slug)}}" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                        <img src="{{Voyager::image($let->images)}}" alt="{{$let->name}}">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                        <h6>{{$let->name}}</h6>
-                                        <span>Rs. {{$let->sale_price}}</span>
-                                        </div>
-                                    </a>
-                                    @endforeach
+                                            <div class="latest-product__item__pic">
+                                            <img src="{{Voyager::image($let->images)}}" alt="{{$let->name}}">
+                                            </div>
+                                            <div class="latest-product__item__text">
+                                            <h6>{{$let->name}}</h6>
+                                            <span>Rs. {{$let->sale_price}}</span>
+                                            </div>
+                                        </a>
+                                        @endforeach
 
-                                @else
 
-                                    <h3>No any Product</h3>
-                                @endif
+                                    </div>
+                            @endforeach
+                    @else
 
-                            </div>
+                    <h3>No any Product</h3>
+                @endif
                         </div>
                     </div>
                 </div>
@@ -159,25 +161,29 @@
                     <div class="latest-product__text">
                         <h4>Top Rated Products</h4>
                         <div class="latest-product__slider owl-carousel">
-                            <div class="latest-prdouct__slider__item">
-                                @if (count($top_rated)>0)
-                                @foreach ($top_rated as $top)
-                                <a href="{{url('shop-detail/'.$top->slug)}}" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                    <img src="{{Voyager::image($top->images)}}" alt="{{$top->name}}">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                    <h6>{{$top->name}}</h6>
-                                    <span>Rs. {{$top->sale_price}}</span>
-                                    </div>
-                                </a>
-                                @endforeach
+                            @if (count($top_rated)>0)
+                                    @foreach($top_rated->chunk(3) as $chunk)
+                                            <div class="latest-prdouct__slider__item">
+                                                @foreach ($chunk as $top)
+                                                <a href="{{url('shop-detail/'.$top->slug)}}" class="latest-product__item">
+                                                    <div class="latest-product__item__pic">
+                                                    <img src="{{Voyager::image($top->images)}}" alt="{{$top->name}}">
+                                                    </div>
+                                                    <div class="latest-product__item__text">
+                                                    <h6>{{$top->name}}</h6>
+                                                    <span>Rs. {{$top->sale_price}}</span>
+                                                    </div>
+                                                </a>
+                                                @endforeach
 
+
+                                            </div>
+                                    @endforeach
                             @else
 
-                                <h3>No any Product</h3>
-                            @endif
-                            </div>
+                            <h3>No any Product</h3>
+                        @endif
+
                         </div>
                     </div>
                 </div>
@@ -185,27 +191,28 @@
                     <div class="latest-product__text">
                         <h4>Review Products</h4>
                         <div class="latest-product__slider owl-carousel">
+                            @if (count($reviewed)>0)
+                            @foreach($reviewed->chunk(3) as $chunk)
+                                    <div class="latest-prdouct__slider__item">
+                                        @foreach ($chunk as $rev)
+                                        <a href="{{url('shop-detail/'.$rev->slug)}}" class="latest-product__item">
+                                            <div class="latest-product__item__pic">
+                                            <img src="{{Voyager::image($rev->images)}}" alt="{{$rev->name}}">
+                                            </div>
+                                            <div class="latest-product__item__text">
+                                            <h6>{{$rev->name}}</h6>
+                                            <span>Rs. {{$rev->sale_price}}</span>
+                                            </div>
+                                        </a>
+                                        @endforeach
 
-                            <div class="latest-prdouct__slider__item">
-                                @if (count($reviewed)>0)
-                                @foreach ($reviewed as $rev)
-                                <a href="{{url('shop-detail/'.$rev->slug)}}" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                    <img src="{{Voyager::image($rev->images)}}" alt="{{$rev->name}}">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                    <h6>{{$rev->name}}</h6>
-                                    <span>Rs. {{$rev->sale_price}}</span>
-                                    </div>
-                                </a>
-                                @endforeach
 
+                                    </div>
+                            @endforeach
                             @else
 
-                                <h3>No any Product</h3>
-                            @endif
-
-                            </div>
+                            <h3>No any Product</h3>
+                        @endif
                         </div>
                     </div>
                 </div>
@@ -238,7 +245,13 @@
                                     <li><i class="fa fa-comment-o"></i> </li>
                                 </ul>
                             <h5><a href={{url("blog-detail/".$item->slug)}}>{{$item->title}}</a></h5>
-                            <p>{!!$item->body!!}
+                            @php
+
+
+                            @endphp
+                            <p>
+                                {{substr($item->body, 0, 83)}}
+                            </p>
                             </div>
                         </div>
                     </div>

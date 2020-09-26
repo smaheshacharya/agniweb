@@ -25,7 +25,7 @@ Route::patch('/update-cart', 'Frontend\ProductController@update');
 
 Route::delete('/remove-from-cart', 'Frontend\ProductController@remove');
 //category
-Route::get('/category/{slug}',"Frontend\CategoryController@show");
+Route::get('/category/{slug}/{id}',"Frontend\CategoryController@show");
 // Blog
 Route::get('/blog',"Frontend\BlogController@index");
 Route::get('blog-detail/{slug}',"Frontend\BlogController@show");
@@ -35,7 +35,7 @@ Route::get('contact',"Frontend\ContactController@index");
 Route::post('sendmail/',"Frontend\ContactController@sendmail")->name('sendmail');
 
 // checkout
-Route::get('checkout/',"Frontend\OrderController@checkout");
+Route::get('checkout/',"Frontend\OrderController@checkout")->name("checkout");
 //order place
 Route::post('order/',"Frontend\OrderController@store")->name('order');
 //thanks
@@ -52,6 +52,17 @@ Route::get('/how',"Frontend\Customer@how");
 Route::get('/pay_process',"Frontend\Customer@pay_process");
 Route::get('/terms_condition',"Frontend\Customer@terms_condition");
 
+//autocomplete
+Route::post('/autocomplete/fetch','AutocompleteController@fetch')->name('autocomplete.fetch');
+
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
