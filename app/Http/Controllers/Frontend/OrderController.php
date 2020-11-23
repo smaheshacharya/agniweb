@@ -70,8 +70,10 @@ class OrderController extends Controller
         }
 
         $phone_number = $request->phone;
-        $order_number = substr($phone_number,4).rand(1000,9999);
-        $transaction_id = substr($phone_number,3).rand(10000,99999);
+        $today = date("Ymd");
+        $rand = strtoupper(substr(uniqid(sha1(time())),0,4));
+        $order_number = substr($phone_number,4).$today.$rand;
+        $transaction_id = substr($phone_number,3).$today.$rand;
 
 
             if(session('cart'))
@@ -84,53 +86,42 @@ class OrderController extends Controller
                         'order_date'=> date("Y-m-d H:i:s"),
                         'status' => 'pending',
                         'total'=> $details['sale_price'],
-                        'user_id'=> auth()->user() ? auth()->user()->id : null,
                         'payment_method'=> $payment,
                         'transaction_id'=> $transaction_id,
                         'payment_status' => 'to-be-paid',
                         'image'=> $details['images'],
                         'product_name'=> $details['name'],
                         'order_notes'=> $request->oder_note,
+                        'shipping_info' => $request->ship_address.$request->ship_city.$request->ship_state.$request->ship_country.$request->ship_phone
+
 
 
 
                     ]);
                 }
                 $order->save();
-
+                $billing = Billing::create([
+                    'full_name'=> $request->fullname,
+                    'address'=> $request->address,
+                    'city' => $request->city,
+                    'state'=> $request->state,
+                    'postcode'=> $request->post_code,
+                    'country'=> $request->country,
+                    'phone'=> $request->phone,
+                    'email'=> auth()->user() ? auth()->user()->email : null,
+                    'order_number' => $order_number
+    
+    
+                ]);
+                $billing->save();
+    
+                return redirect('thanks');
             }
-            $billing = Billing::create([
-                'full_name'=> $request->fullname,
-                'address'=> $request->address,
-                'city' => $request->city,
-                'state'=> $request->state,
-                'postcode'=> $request->post_code,
-                'country'=> $request->country,
-                'phone'=> $request->phone,
-                'email'=> auth()->user() ? auth()->user()->email : null,
-                'user_id' => auth()->user() ? auth()->user()->id : null,
-                'orders' => $order_number
+        
+       
+           
 
-
-            ]);
-            $shipping = Shipping::create([
-                'full_name'=> $request->ship_fullname,
-                'address'=> $request->ship_address,
-                'city' => $request->ship_city,
-                'state'=> $request->ship_state,
-                'postcode'=> $request->ship_post_code,
-                'country'=> $request->ship_country,
-                'phone'=> $request->ship_phone,
-                'email'=> auth()->user() ? auth()->user()->email : null,
-                'user_id' => auth()->user() ? auth()->user()->id : null,
-                'orders' => $order_number
-
-
-            ]);
-            $billing->save();
-            $shipping->save();
-
-            return redirect('thanks');
+            return redirect('checkout')->with('warning','Somthing went wrong when ordering');
 
 
     }

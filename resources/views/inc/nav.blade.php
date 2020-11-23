@@ -5,9 +5,9 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-md-6">
-                <div class="header__top__left">
+                <div class="header__top__left" data-toggle="tooltip" data-placement="top" title="Gmail">
                     <ul>
-                    <li><i class="fa fa-envelope"></i>{{$detail->email}}</li>
+                    <li><i class="fa fa-envelope" ></i>{{$detail->email}}</li>
                     <li>{{$detail->extra_info}}</li>
                     </ul>
                 </div>
@@ -15,10 +15,10 @@
             <div class="col-lg-6 col-md-6">
                 <div class="header__top__right">
                     <div class="header__top__right__social">
-                        <a href="{{$detail->facebook_link}}" target="_blank"><i class="fa fa-facebook"></i></a>
-                        <a href="{{$detail->instagram_link}}" target="_blank"><i class="fa fa-twitter"></i></a>
-                        <a href="{{$detail->twitter_link}}" target="_blank"><i class="fa fa-linkedin"></i></a>
-                        <a href="{{$detail->pinintrest_link}}" target="_blank"><i class="fa fa-pinterest-p"></i></a>
+                        <a href="https://{{$detail->facebook_link}}" target="_blank" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook" ></i></a>
+                        <a href="https://{{$detail->instagram_link}}" target="_blank" data-toggle="tooltip" data-placement="top" title="Instagram"><i class="fa fa-twitter"></i></a>
+                        <a href="https://{{$detail->twitter_link}}" target="_blank" data-toggle="tooltip" data-placement="top" title="LinkedIn"><i class="fa fa-linkedin"></i></a>
+                        <a href="https://{{$detail->pinintrest_link}}" target="_blank" data-toggle="tooltip" data-placement="top" title="Pinterest"><i class="fa fa-pinterest-p"></i></a>
                     </div>
                     <div class="header__top__right__language">
                         <img src="img/language.png" alt="">
@@ -29,13 +29,14 @@
                             <li><a href="#">English</a></li>
                         </ul>
                     </div>
-                        <div class="header__top__right__auth">
+                        <div class="header__top__right__social" data-toggle="tooltip" data-placement="top" title="Track your order.">
                             <a href="{{url('/track')}}"><i class="fa fa-truck"></i> Track Order</a>
 
                         </div>
 
-                    <div class="header__top__right__auth">
-                        <a href="#"><i class="fa fa-user"></i> Login</a>
+
+                    <div class="header__top__right__auth" data-toggle="tooltip" data-placement="top" title="Login">
+                    <a href="#"><i class="fa fa-user"></i> Login</a>
                     </div>
                 </div>
             </div>

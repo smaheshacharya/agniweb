@@ -113,6 +113,41 @@ class ProductController extends Controller
 
         return redirect()->back()->with('success', 'Product added to cart successfully!');
     }
+
+    // public function buyProduct($id)
+    // {
+    //     $product = Product::find($id);
+
+    //     if(!$product) {
+
+    //         abort(404);
+
+    //     }
+
+    //     $cart = session()->get('cart');
+
+    //     // if cart is empty then this the first product
+    //     if(!$cart) {
+
+    //         $cart = [
+    //                 $id => [
+    //                     "images"=>$product->images,
+    //                     "name" => $product->name,
+    //                     "sale_price"=> $product->sale_price,
+    //                     "quantity" => 1,
+
+
+    //                 ]
+    //         ];
+
+    //         session()->put('cart', $cart);
+
+    //         return view('cart')->with('success', 'Continue Checkout Process');
+    //     }
+
+
+
+    // }
     public function update(Request $request)
     {
         if($request->id and $request->quantity)
@@ -126,6 +161,7 @@ class ProductController extends Controller
             session()->flash('success', 'Cart updated successfully');
         }
     }
+
 
     public function remove(Request $request)
     {

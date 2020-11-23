@@ -65,7 +65,7 @@
                  $.ajax({
                      url :"{{route('autocomplete.fetch')}}",
                      method:"POST",
-                     data:{query:query,_token:'{{ csrf_token() }}'},
+                     data:{query:query, _token:'{{ csrf_token() }}'},
                      success:function(data)
                      {
                          $('#countryList').fadeIn();
@@ -162,6 +162,15 @@
             }
   }
 
+
+</script>
+<script>
+    $("document").ready(function(){
+    setTimeout(function(){
+        $("div.alert-block").fadeOut('slow');
+    }, 3000 );
+
+});
 
 </script>
     <div id="fb-root"></div>

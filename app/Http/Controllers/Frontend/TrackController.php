@@ -35,7 +35,7 @@ class TrackController extends Controller
         $category = ProductCategory::orderBy('created_at','ASC')->get();
         $this->validate($request,[
             'order_number'=>'required',
-            'email'=>'required',
+            // 'email'=>'required',
 
         ]);
         $order_number = $request->input('order_number');
@@ -45,7 +45,7 @@ class TrackController extends Controller
         $status = Order::where('order_number', $order_number)->get();
         $email = Billing::where('email', $email)->get();
         // return $status;
-        if(count($status)>0 && count($email) >0)
+        if(count($status)>0)
         {
             return view('track')->with('detail',$detail)->with('category',$category)->with('status',$status);
 

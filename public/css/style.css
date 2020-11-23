@@ -1630,7 +1630,7 @@ ol {
 .pagination > li > span:hover {
     z-index: 3;
     color: #23527c;
-    background-color: purple;
+    background-color: rgb(231, 6, 6);
     border-color: #ddd;
 }
 .product__pagination a,

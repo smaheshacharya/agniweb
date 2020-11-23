@@ -4,7 +4,52 @@
 @section('meta_description', $posts->body)
 @section('image', Voyager::image($posts->image))
 @section('content')
-
+<section class="hero hero-normal">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="hero__categories">
+                    <div class="hero__categories__all">
+                        <i class="fa fa-bars"></i>
+                        <span>All Categories</span>
+                    </div>
+                    <ul>
+                        @if (count($category)>0)
+                            @foreach ($category as $cat)
+                    <li><a href="">{{$cat->name}}</a></li>
+                            @endforeach
+                            @else
+                            <li><a href="#">Category Not Found</a></li>
+                        @endif
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="hero__search">
+                    <div class="hero__search__form">
+                    <form action="{{route('search')}}" method="get">
+                            <div class="hero__search__categories">
+                                All Prducts
+                                <span class="arrow_carrot-down"></span>
+                            </div>
+                            <input type="text" placeholder="What do yo u need?" name="search">
+                            <button type="submit" class="site-btn">SEARCH</button>
+                        </form>
+                    </div>
+                    <div class="hero__search__phone">
+                        <div class="hero__search__phone__icon">
+                            <i class="fa fa-phone"></i>
+                        </div>
+                        <div class="hero__search__phone__text">
+                            <h5>{{$detail->phone}}</h5>
+                            <span>support 24/7 time</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
     <!-- Blog Details Hero Begin -->
     <section class="blog-details-hero set-bg" data-setbg="{{Voyager::image($posts->image)}}">
         <div class="container">
@@ -53,13 +98,13 @@
                             <div class="blog__sidebar__recent">
                                 @if (count($recent)>0)
                                 @foreach ($recent as $rec)
-                            <a href="{{url('blog-detail/'.$rec->id)}}" class="blog__sidebar__recent__item">
+                            <a href="{{url('blog-detail/'.$rec->slug)}}" class="blog__sidebar__recent__item">
                                     <div class="blog__sidebar__recent__item__pic">
                                     <img src="{{Voyager::image($rec->image)}}" style="height: 70px; width:70px"alt="">
                                     </div>
                                     <div class="blog__sidebar__recent__item__text">
                                         <h6 >{{$rec->title}}</h6>
-                                        <span>{{$rec->creatted_at}}</span>
+                                        <span>{{$rec->created_at}}</span>
                                     </div>
                                 </a>
                                 @endforeach
@@ -75,7 +120,7 @@
                 </div>
                 <div class="col-lg-8 col-md-7 order-md-1 order-1">
                     <div class="blog__details__text">
-                    <img src="{{$posts->image}}" alt="">
+                    <img src="{{$posts->image}}" alt="{{$posts->title}}">
 
                     <h3>{{$posts->title}}</h3>
                     <p>{!!$posts->body!!}</p>

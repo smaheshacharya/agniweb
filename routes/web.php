@@ -20,6 +20,7 @@ Route::get('/shop',"Frontend\ProductController@index");
 Route::get('/shop-detail/{slug}',"Frontend\ProductController@show");
 Route::get('/cart',"Frontend\ProductController@cart");
 Route::get('add-to-cart/{id}',"Frontend\ProductController@addToCart");
+// Route::get('buy-product/{id}',"Frontend\ProductController@buyProduct");
 
 Route::patch('/update-cart', 'Frontend\ProductController@update');
 
@@ -59,10 +60,3 @@ Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
